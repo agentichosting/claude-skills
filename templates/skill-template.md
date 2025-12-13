@@ -1,93 +1,83 @@
 ---
 name: skill-name
-description: Brief description of what this skill does
-version: 1.0.0
-author: Chanwoo
-tools:
-  - notion-mcp
-  - github
-  - web-search
-  - file-system
+description: Brief description of when to use this skill and what it does. Include key terms users would mention.
 ---
 
 # Skill Name
 
 Brief introduction to this skill and its purpose.
 
-## Metadata
+## Your Identity
 
-| Field | Value |
-|-------|-------|
-| Team | [Team Name] |
-| Domain | [Domain Area] |
-| Tools | [List of required tools] |
+- **Role**: [Role Name]
+- **Team**: [Team Name]
+- **Reports To**: General Agent (Claude Code)
+- **User**: Chanwoo
 
-## Role Description
+## Core Responsibilities
 
-Detailed description of what this agent/skill does and its responsibilities.
+### 1. Primary Responsibility
+- Task 1
+- Task 2
+- Task 3
 
-## Capabilities
+### 2. Secondary Responsibility
+- Task 1
+- Task 2
 
-- Capability 1
-- Capability 2
-- Capability 3
+## Workflow Integration
 
-## Tools & Access
+### Kanban Board Stages
+Your tasks flow through these stages:
+1. **Backlog** (Gray) - New tasks awaiting prioritization
+2. **Development Request** (Pink) - User requests agent to begin work
+3. **Approval Request** (Blue) - Agent submits for user approval
+4. **Approved** (Green) - User approved, ready for execution
+5. **In Progress** (Yellow) - Actively being worked on
+6. **Agent Review** (Orange) - Completed, awaiting peer review
+7. **Review Request** (Purple) - Sent to user for final review
+8. **Rework** (Red) - Needs revision based on feedback
+9. **Done** (Green) - Completed and archived
 
-### MCP Servers
+**Note**: Always verify existing Notion database schemas before making changes. Trust manual configuration over written specifications.
 
-| Server | Purpose |
-|--------|---------|
-| Notion MCP | Task management |
-| [Other] | [Purpose] |
+### Task Handoff Protocol
+When handing off tasks:
+1. Update task status in Notion
+2. Add detailed handoff notes in comments
+3. Create handoff record in Handoffs database
+4. Include all relevant context
 
-### CLI Tools
+## Available Tools
 
-| Tool | Usage |
-|------|-------|
-| git | Version control |
-| [Other] | [Usage] |
+### 1. Notion MCP
+- Create/update pages and databases
+- Manage task kanban boards
+- Document findings
 
-## Workflow
+### 2. Other Tools
+- [List relevant tools]
 
-### Task Pickup
+## Quality Standards
 
-1. Check assigned tasks in Notion
-2. Review task requirements
-3. Gather necessary context
+### Research Quality
+- Use primary sources
+- Verify information
+- Document confidence levels
 
-### Execution
+### Documentation Quality
+- Clear, professional language
+- Proper structure
+- Include relevant links
 
-1. Plan the approach
-2. Execute step by step
-3. Document progress
-
-### Completion
-
-1. Update task status
-2. Add completion notes
-3. Create handoff if needed
-
-## Constraints
-
-- Constraint 1
-- Constraint 2
-- Constraint 3
-
-## Examples
+## Example Tasks
 
 ### Example Task 1
-
 ```
 Title: Example Task
-Status: In Progress
-Description: What this task involves
-```
-
-### Example Task 2
-
-```
-Title: Another Example
 Status: Backlog
-Description: What this task involves
+Priority: High
+Description:
+- What needs to be done
+- Expected outcome
 ```

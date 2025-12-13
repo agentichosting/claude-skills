@@ -1,23 +1,32 @@
 # Claude Skills Repository
 
-Claude Code skill files for agentic teams. This repository contains skill definitions that can be invoked in Claude Code sessions.
+Claude Code skill files for agentic teams. Skills are model-invoked prompts that activate automatically when relevant to your request.
 
 ## Structure
 
-| Directory | Team | Description |
-|-----------|------|-------------|
-| `skills/career/` | Career Team | PhD application, career management |
-| `skills/infra/` | Infra Team | K3s cluster, GitOps, infrastructure |
-| `skills/mcp/` | MCP Team | MCP server development |
-| `skills/blog/` | Blog Team | Blog content for blog.chanwoo.pro |
-| `skills/shared/` | All Teams | Shared utilities and common skills |
-| `templates/` | - | Skill file templates |
+```
+claude-skills/
+├── README.md
+├── CLAUDE.md              # Global agent instructions
+├── sync.sh                # Sync script
+├── skills/
+│   └── career-advisor/    # Each skill in its own directory
+│       └── SKILL.md       # Skill definition file
+└── templates/
+    └── skill-template.md  # Template for new skills
+```
+
+## Available Skills
+
+| Skill | Description |
+|-------|-------------|
+| `career-advisor` | PhD application planning and career management |
 
 ## Usage
 
 ### 1. Sync to Local
 
-Clone this repository and run the sync script to create symlinks in your Claude Code skills directory:
+Clone this repository and run the sync script:
 
 ```bash
 git clone https://github.com/agentichosting/claude-skills.git
@@ -25,40 +34,49 @@ cd claude-skills
 ./sync.sh
 ```
 
-This creates symlinks at `~/.claude/skills/` pointing to each team directory.
+This creates symlinks at `~/.claude/skills/` for each skill.
 
-### 2. Invoke a Skill
+### 2. How Skills Work
 
-In Claude Code, invoke a skill using:
+Skills are **model-invoked**, not user-invoked:
+- Skills activate automatically when Claude decides they're relevant
+- You don't explicitly call them with `/skill`
+- Claude reads the skill description to determine relevance
 
-```
-/skill:career-advisor
-```
+To use a skill, simply ask questions related to the skill topic. For example:
+- "Help me research Stanford's NLP program for PhD applications"
+- "What should I prioritize for my Fall 2027 applications?"
 
-Or browse available skills:
+### 3. After Updates
 
-```
-/skill
-```
-
-## Workflow
-
-1. **Edit** - Modify skill files in VS Code or your preferred editor
-2. **Commit** - Push changes to GitHub
-3. **Sync** - Run `./sync.sh` to update local symlinks
-4. **Use** - Invoke updated skills in Claude Code
+After updating skill files:
+1. Commit and push changes
+2. Run `./sync.sh` to update local symlinks
+3. Restart Claude Code to reload skills
 
 ## Creating New Skills
 
-Use the template at `templates/skill-template.md` as a starting point:
-
+1. Create a new directory under `skills/`:
 ```bash
-cp templates/skill-template.md skills/[team]/[skill-name].md
+mkdir skills/my-skill
 ```
 
-Edit the file following the template structure with YAML frontmatter and markdown body.
+2. Create `SKILL.md` in that directory:
+```bash
+cp templates/skill-template.md skills/my-skill/SKILL.md
+```
+
+3. Edit with required fields:
+```yaml
+---
+name: my-skill
+description: When to use this skill and what it does
+---
+```
+
+The `description` is critical - it helps Claude decide when to activate the skill.
 
 ## Related Links
 
-- [Notion Migration Plan](https://www.notion.so/Agent-Prompts-Notion-Migration-2c81b29d0d9081fa8645c4d78c8d01fd)
-- [Career Team Space](https://www.notion.so/Career-Team-2c81b29d0d90813a94daf643125b02bf)
+- [Notion Career Team](https://www.notion.so/Career-Team-2c81b29d0d90813a94daf643125b02bf)
+- [Agent Prompts Migration](https://www.notion.so/Agent-Prompts-Notion-Migration-2c81b29d0d9081fa8645c4d78c8d01fd)
