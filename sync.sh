@@ -18,31 +18,27 @@ if [ ! -d "$SKILLS_DIR" ]; then
     mkdir -p "$SKILLS_DIR"
 fi
 
-# Team directories to sync
-TEAMS=("career" "infra" "mcp" "blog" "shared")
-
 echo "Syncing skill directories..."
 echo ""
 
-for team in "${TEAMS[@]}"; do
-    source_dir="$SCRIPT_DIR/skills/$team"
-    target_link="$SKILLS_DIR/$team"
+# Find all directories containing SKILL.md files
+for skill_dir in "$SCRIPT_DIR/skills"/*/; do
+    if [ -f "${skill_dir}SKILL.md" ]; then
+        skill_name=$(basename "$skill_dir")
+        target_link="$SKILLS_DIR/$skill_name"
 
-    # Remove existing symlink or directory
-    if [ -L "$target_link" ]; then
-        echo "  Removing existing symlink: $target_link"
-        rm "$target_link"
-    elif [ -d "$target_link" ]; then
-        echo "  Warning: $target_link is a directory, skipping..."
-        continue
-    fi
+        # Remove existing symlink or directory
+        if [ -L "$target_link" ]; then
+            echo "  Removing existing symlink: $target_link"
+            rm "$target_link"
+        elif [ -d "$target_link" ]; then
+            echo "  Warning: $target_link is a directory, skipping..."
+            continue
+        fi
 
-    # Create new symlink
-    if [ -d "$source_dir" ]; then
-        ln -s "$source_dir" "$target_link"
-        echo "  Linked: $team -> $source_dir"
-    else
-        echo "  Warning: Source directory not found: $source_dir"
+        # Create new symlink
+        ln -s "$skill_dir" "$target_link"
+        echo "  Linked: $skill_name -> $skill_dir"
     fi
 done
 

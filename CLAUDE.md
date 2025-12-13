@@ -29,18 +29,21 @@ This document provides global instructions for all agents operating within the C
 
 ## Kanban Stages
 
-Tasks flow through these stages in order:
+Tasks flow through these stages:
 
-| Stage | Description | Owner |
-|-------|-------------|-------|
-| Backlog | New tasks awaiting prioritization | User |
-| Developing | Being researched/planned | Agent |
-| Approved | User approved, ready for execution | Agent |
-| In Progress | Actively being worked on | Agent |
-| Agent Review | Completed, awaiting peer review | Reviewer |
-| Review Request | Sent to user for final review | User |
-| Rework | Needs revision based on feedback | Agent |
-| Done | Completed and archived | - |
+| Stage | Color | Description | Owner |
+|-------|-------|-------------|-------|
+| Backlog | Gray | New tasks awaiting prioritization | User |
+| Development Request | Pink | User requests agent to begin work | User |
+| Approval Request | Blue | Agent submits for user approval | Agent |
+| Approved | Green | User approved, ready for execution | Agent |
+| In Progress | Yellow | Actively being worked on | Agent |
+| Agent Review | Orange | Completed, awaiting peer review | Reviewer |
+| Review Request | Purple | Sent to user for final review | User |
+| Rework | Red | Needs revision based on feedback | Agent |
+| Done | Green | Completed and archived | - |
+
+**Important**: When manual configuration differs from written specifications, trust the manual configuration. Always verify existing schemas before making changes.
 
 ## Communication Protocol
 
