@@ -194,6 +194,35 @@ Description:
 3. Escalate to General Agent for cross-team coordination
 4. Request User input for strategic decisions
 
+## Security Policy
+
+When creating content for blog.chanwoo.pro or any public platform, follow these rules:
+
+### Never Include in Public Content
+
+- **Private repository URLs** - Say "private GitHub repository" instead
+- **Port numbers** - Use `<port>` placeholder or omit entirely
+- **Internal IPs or hostnames** - Use generic descriptions
+- **API keys, tokens, credentials** - Never include, even partially
+- **Internal organization names** - Use generic references
+
+### Content Review Checklist
+
+Before publishing any blog post or public document:
+
+1. [ ] No port numbers (especially 30000-32767 range)
+2. [ ] No private repository URLs
+3. [ ] No internal IP addresses
+4. [ ] No API keys or tokens
+5. [ ] No configuration with real values
+
+### Safe to Share
+
+- Public domain (chanwoo.pro)
+- Public service URLs (blog.chanwoo.pro)
+- General architecture descriptions
+- Open source tool names and concepts
+
 ## Success Metrics
 
 - Applications submitted on time: 100%

@@ -76,13 +76,12 @@ Always maintain links between related items:
 
 ## Available MCP Servers
 
-| Server | Port | Purpose |
-|--------|------|---------|
-| Notion MCP | 30091 | Task management, databases |
-| Cloudflare DNS | 30080 | DNS record management |
-| Atlassian MCP | - | Jira/Confluence (stdio) |
-| Playwright | - | Browser automation (stdio) |
-| Context7 | - | Documentation lookup (stdio) |
+| Server | Transport | Purpose |
+|--------|-----------|---------|
+| Notion MCP | HTTP | Task management, databases |
+| Cloudflare DNS | HTTP | DNS record management |
+| Playwright | stdio | Browser automation |
+| Context7 | stdio | Documentation lookup |
 
 ## Quality Standards
 
@@ -101,9 +100,48 @@ Always maintain links between related items:
 - Highlight decisions and blockers
 - Escalate issues promptly
 
+## Security Policy
+
+All agents MUST follow these security guidelines when creating content for public consumption (blog posts, GitHub, public documentation).
+
+### Never Disclose
+
+| Category | Examples | Action |
+|----------|----------|--------|
+| Private Repositories | GitOps repo URLs, internal repos | Say "private GitHub repository" |
+| Port Numbers | NodePort, service ports (30080, etc.) | Use `<port>` placeholder or omit |
+| Internal IPs | Cluster IPs, node IPs | Omit or use generic examples |
+| API Keys/Tokens | Cloudflare, GitHub tokens | Never include, even partial |
+| Credentials | Passwords, secrets | Never include |
+| Internal Hostnames | K8s service names, internal DNS | Use generic descriptions |
+
+### Safe to Share
+
+- Public domain names (chanwoo.pro)
+- General architecture descriptions
+- Open source tool names
+- Public service URLs (argo.chanwoo.pro, etc.)
+- Conceptual explanations
+
+### When Writing Blog Posts or Public Content
+
+1. **Review for secrets**: Before committing, scan for ports, IPs, tokens
+2. **Use placeholders**: `<port>`, `<api-key>`, `<internal-url>`
+3. **Describe, don't expose**: "A private GitOps repository" not the URL
+4. **Security by obscurity is not enough**: But don't make it easy
+
+### When Reviewing Content
+
+Flag any of the following for removal:
+- URLs containing internal organization names
+- Port numbers (especially NodePort range 30000-32767)
+- Configuration snippets with real values
+- References to internal tooling locations
+
 ## Constraints
 
 1. **No Unauthorized Actions** - Don't perform irreversible actions without approval
 2. **Document Everything** - All significant decisions must be documented
 3. **Respect Boundaries** - Stay within your agent's domain expertise
 4. **Escalate Uncertainty** - When unsure, ask rather than assume
+5. **Security First** - Never expose sensitive infrastructure details publicly
